@@ -1,0 +1,35 @@
+public class MainActivity extends AppCompatActivity {
+private Button button1;
+private String username;
+private String password;
+String Username ="admin";
+String Password = "123456";
+final Uri uri=Uri.parse("https://open.iot.10086.cn/view/main/#/share2d?id=606db15b4adeaa0035411506");
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        button1 = (Button)findViewById(R.id.button);
+        button1.setOnClickListener(new View.OnClickListener() {
+            EditText PT=findViewById(R.id.PassWord);//get information of password text;
+            EditText UT=findViewById(R.id.UserName);//get information of username text;
+
+            public void onClick(View v) {
+                username = UT.getText().toString();
+                password = PT.getText().toString();
+                if (username.equals(Username)&&password.equals(Password))
+                {
+                    Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"invalid username or password.",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+}
